@@ -32,3 +32,22 @@ export function createSlotContent(parent, slotName, tagName, tagContent) {
   parent.append(tag);
   return tag;
 }
+
+/**
+ * Creates an element, appending it to the parent and giving it any desired classes
+ * @template {keyof HTMLElementTagNameMap} K
+ * @param {K} tagName The HTML tag to create
+ * @param {ParentNode | null} parent The parent to attach to
+ * @param  {...string} [classNames] Any classes to append to the element
+ * @returns The created element
+ */
+export function createEl(tagName, parent, ...classNames) {
+  const el = document.createElement(tagName);
+  classNames.forEach((className) => el.classList.add(className));
+  if (parent) {
+    parent.append(el);
+  }
+  return el;
+}
+
+const a = document.createElement("button");
