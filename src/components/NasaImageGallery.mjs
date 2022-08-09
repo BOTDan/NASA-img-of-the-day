@@ -12,9 +12,15 @@ class NasaImageGallery extends HTMLElement {
 
     this.attachShadow({ mode: "open" });
 
-    this.#grid = document.createElement("grid-layout");
+    this.#grid = document.createElement("div");
+    this.#grid.classList.add("nasa-image-gallery");
 
-    this.shadowRoot.append(this.#grid);
+    // Create local style
+    const style = document.createElement("link");
+    style.rel = "stylesheet";
+    style.href = "/src/components/NasaImageGallery.css";
+
+    this.shadowRoot.append(style, this.#grid);
 
     this.loadImages();
   }
