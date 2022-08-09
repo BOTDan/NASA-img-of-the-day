@@ -8,12 +8,18 @@
   <!-- Style -->
   <link rel="stylesheet" href="/src/css/base.css">
   <!-- Script -->
+  <script type="module" src="/src/components/Grid.mjs"></script>
   <script type="module" src="/src/components/ImagePreview.mjs"></script>
 </head>
 <body>
-  <main>
+  <main class="container">
     Hello
-    <image-preview src="https://apod.nasa.gov/apod/image/1711/ThorsHelmet_Block_960.jpg">This is text</image-preview>
+    <grid-layout>
+      <image-preview src="https://apod.nasa.gov/apod/image/1711/ThorsHelmet_Block_960.jpg">This is text</image-preview>
+      <image-preview src="https://apod.nasa.gov/apod/image/1711/ThorsHelmet_Block_960.jpg">This is text</image-preview>
+      <image-preview src="https://apod.nasa.gov/apod/image/1711/ThorsHelmet_Block_960.jpg">This is text</image-preview>
+      <image-preview src="https://apod.nasa.gov/apod/image/1711/ThorsHelmet_Block_960.jpg">This is text</image-preview>
+    </grid>
   </main>
 </body>
 </html>
