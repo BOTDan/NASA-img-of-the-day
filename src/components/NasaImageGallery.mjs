@@ -2,25 +2,37 @@
 
 import { getPictureOfTheDay } from "../api/nasa.mjs";
 import { createSlotContent } from "../helper.mjs";
-import { ImagePreview } from "./ImagePreview.mjs";
+import "./ImagePreview.mjs";
+import "./LoadingButton.mjs";
 
 class NasaImageGallery extends HTMLElement {
   #grid;
+  #loadMore;
 
   constructor() {
     super();
 
     this.attachShadow({ mode: "open" });
 
+    const wrapper = document.createElement("div");
+    wrapper.classList.add("nasa-image-gallery");
+
     this.#grid = document.createElement("div");
     this.#grid.classList.add("nasa-image-gallery");
+    wrapper.append(this.#grid);
+
+    this.#loadMore = document.createElement("loading-button");
+    this.#loadMore.onclick = async () => {
+      await this.loadImages(10);
+    }
+    wrapper.append(this.#loadMore);
 
     // Create local style
     const style = document.createElement("link");
     style.rel = "stylesheet";
     style.href = "/src/components/NasaImageGallery.css";
 
-    this.shadowRoot.append(style, this.#grid);
+    this.shadowRoot.append(style, wrapper);
 
     this.loadImages();
   }
