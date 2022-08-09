@@ -13,8 +13,23 @@
 
 .image-preview-desc {
   padding: 1rem;
+  color: #000;
 }
 
 .image-preview-desc > p {
   margin: 0;
+}
+
+.image-preview-desc .title {
+  font-weight: 600;
+  font-size: 1.2em;
+}
+
+.image-preview-desc .description {
+  /*  */
+} 
+
+.image-preview-desc .addendum {
+  font-weight: 200;
+  color: #444;
 }

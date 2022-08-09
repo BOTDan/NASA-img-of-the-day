@@ -1,6 +1,10 @@
 // @ts-check
 
-class ImagePreview extends HTMLElement {
+import { createSlot } from "../helper.mjs";
+
+export class ImagePreview extends HTMLElement {
+  #img;
+
   constructor() {
     super();
 
@@ -10,20 +14,18 @@ class ImagePreview extends HTMLElement {
     wrapper.classList.add("image-preview");
 
     // Create the image
-    const img = document.createElement("img");
-    img.src = this.getAttribute("src");
-    wrapper.append(img);
+    this.#img = document.createElement("img");
+    this.#img.src = this.getAttribute("src");
+    wrapper.append(this.#img);
 
     // Create the description under the image
-    const description = document.createElement("div");
-    description.classList.add("image-preview-desc");
-    wrapper.append(description);
+    const infoArea = document.createElement("div");
+    infoArea.classList.add("image-preview-desc");
+    wrapper.append(infoArea);
 
-    const p = document.createElement("p");
-    description.append(p);
-
-    const slot = document.createElement("slot");
-    p.append(slot);
+    createSlot(infoArea, "title").classList.add("title");
+    createSlot(infoArea, "description").classList.add("description");
+    createSlot(infoArea, "addendum").classList.add("addendum");
 
     // Create local style
     const style = document.createElement("link");
@@ -31,6 +33,18 @@ class ImagePreview extends HTMLElement {
     style.href = "/src/components/ImagePreview.css";
 
     this.shadowRoot.append(style, wrapper);
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    switch (name) {
+      case "src": {
+        this.#img.src = newValue;
+      }
+    }
+  }
+
+  static get observedAttributes() {
+    return ["src"];
   }
 }
 
