@@ -2,7 +2,7 @@
 
 /**
  * Creates a slot and appends it to the given parent
- * @param {HTMLElement} parent 
+ * @param {ParentNode} parent 
  * @param {string} [name] The name of the slot
  * @returns The created slot
  */
@@ -17,7 +17,7 @@ export function createSlot(parent, name) {
 
 /**
  * Creates an element with a slot attribute, appending it to the given parent
- * @param {HTMLElement} parent The parent containing the slot
+ * @param {ParentNode} parent The parent containing the slot
  * @param {string} slotName The name of the slot to use
  * @param {string} tagName The HTML tag to create
  * @param {string | HTMLElement} [tagContent] The content to append to the new tag 
