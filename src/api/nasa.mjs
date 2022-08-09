@@ -45,7 +45,7 @@ async function getJSON(request) {
  * @prop {string} url URL to image/video
  * @prop {'image' | 'video'} media_type The type of media
  * @prop {string} explanation Explanation of the image
- * @prop {string?} copyright Name of the copyright holder
+ * @prop {string} [copyright] Name of the copyright holder
  */
 
 /**
