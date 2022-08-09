@@ -3,7 +3,9 @@
 import { createSlot } from "../helper.mjs";
 
 export class ImagePreview extends HTMLElement {
+  #src = '';
   #img;
+  #imgContainer;
 
   constructor() {
     super();
@@ -14,9 +16,15 @@ export class ImagePreview extends HTMLElement {
     wrapper.classList.add("image-preview");
 
     // Create the image
+    const src = this.getAttribute("src");
+    this.#imgContainer = document.createElement("div");
+    this.#imgContainer.classList.add("image-preview-img");
+    this.#imgContainer.setAttribute("style", `--src: url(${src})`);
+    wrapper.append(this.#imgContainer);
+
     this.#img = document.createElement("img");
-    this.#img.src = this.getAttribute("src");
-    wrapper.append(this.#img);
+    this.#img.src = src;
+    this.#imgContainer.append(this.#img);
 
     // Create the description under the image
     const infoArea = document.createElement("div");
@@ -35,10 +43,19 @@ export class ImagePreview extends HTMLElement {
     this.shadowRoot.append(style, wrapper);
   }
 
+  set src(url) {
+    this.#img.src = url;
+    this.#imgContainer.setAttribute("style", `--src: url(${url})`);
+  }
+
+  get src() {
+    return this.#src;
+  }
+
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
       case "src": {
-        this.#img.src = newValue;
+        this.src = newValue;
       }
     }
   }
