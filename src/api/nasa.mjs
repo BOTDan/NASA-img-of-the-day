@@ -34,15 +34,29 @@ async function getJSON(request) {
   if (!response.ok) {
     throw new Error(`Response not OK (status code ${response.status})`);
   }
-  const data = await response.json();
+  const data =  await response.json();
   return data;
 }
+
+/**
+ * @typedef PictureOfTheDay
+ * @prop {string} title The title of the image
+ * @prop {string} date Date of image
+ * @prop {string} url URL to image/video
+ * @prop {'image' | 'video'} media_type The type of media
+ * @prop {string} explanation Explanation of the image
+ * @prop {string?} copyright Name of the copyright holder
+ */
 
 /**
  * Gets a list of pictures of the day
  * @param {number} [count=1] The amount of pictures to get 
  * @returns A list of image urls, with extra data
  */
-export function getPictureOfTheDay(count=1) {
-  return getJSON(makeRequest("GET", "/planetary/apod", { count: count.toString() }));
+export async function getPictureOfTheDay(count=1) {
+  const data = await getJSON(makeRequest("GET", "/planetary/apod", { count: count.toString() }));
+  if (Array.isArray(data)) {
+    return /** @type {PictureOfTheDay[]} */ (data);
+  }
+  throw new Error("Data returned was not an array");
 }
