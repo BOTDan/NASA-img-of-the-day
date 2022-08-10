@@ -3,7 +3,7 @@ This is a site for loading a random list of "Picture of the Day" entries from NA
 
 ### Running
 To run, use `npm start`. This will start a `http-server` for accessing the site. Instructions on how
- to access the site should be output to console, but il will likely launch on `localhost:8080`.
+ to access the site should be output to console, but it will likely launch on `localhost:8080`.
 
 ### API Keys
 By default, this project uses the `DEMO_KEY` for accessing the NASA API. This key has low usage
