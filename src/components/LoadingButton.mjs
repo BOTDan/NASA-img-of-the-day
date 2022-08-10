@@ -1,3 +1,5 @@
+// @ts-check
+
 import { createEl } from "../helper.mjs";
 
 /**
