@@ -59,6 +59,7 @@ class NasaImageGallery extends HTMLElement {
     this.#loadMore.setAttribute("loading", "true");
     try {
       const pictures = await getPictureOfTheDay(count);
+      // Create a card for each picture
       pictures.forEach((picture) => {
         const imagePreview = document.createElement("image-card");
         imagePreview.setAttribute("src", picture.url);
