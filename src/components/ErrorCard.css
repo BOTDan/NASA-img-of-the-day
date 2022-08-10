@@ -1,0 +1,17 @@
+.error-card {
+  display: flex;
+  flex-flow: column nowrap;
+  border: 2px dashed #c0392b;
+  border-radius: 0.25rem;
+  color: #c0392b;
+  padding: 2rem;
+}
+
+::slotted(p) {
+  margin: 0;
+}
+
+.error-card .title {
+  font-size: 1.2em;
+  font-weight: 600;
+}
