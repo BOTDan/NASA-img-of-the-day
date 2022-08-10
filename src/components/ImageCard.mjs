@@ -13,12 +13,12 @@ export class ImagePreview extends HTMLElement {
     this.attachShadow({ mode: "open" });
 
     const wrapper = document.createElement("div");
-    wrapper.classList.add("image-preview");
+    wrapper.classList.add("image-card");
 
     // Create the image
     const src = this.getAttribute("src");
     this.#imgContainer = document.createElement("div");
-    this.#imgContainer.classList.add("image-preview-img");
+    this.#imgContainer.classList.add("image-card-img");
     this.#imgContainer.setAttribute("style", `--src: url(${src})`);
     wrapper.append(this.#imgContainer);
 
@@ -28,7 +28,7 @@ export class ImagePreview extends HTMLElement {
 
     // Create the description under the image
     const infoArea = document.createElement("div");
-    infoArea.classList.add("image-preview-desc");
+    infoArea.classList.add("image-card-desc");
     wrapper.append(infoArea);
 
     createSlot(infoArea, "title").classList.add("title");
@@ -65,4 +65,4 @@ export class ImagePreview extends HTMLElement {
   }
 }
 
-window.customElements.define("image-preview", ImagePreview);
+window.customElements.define("image-card", ImagePreview);

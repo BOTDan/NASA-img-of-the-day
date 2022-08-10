@@ -2,7 +2,7 @@
 
 import { getPictureOfTheDay } from "../api/nasa.mjs";
 import { createSlotContent } from "../helper.mjs";
-import "./ImagePreview.mjs";
+import "./ImageCard.mjs";
 import "./LoadingButton.mjs";
 
 class NasaImageGallery extends HTMLElement {
@@ -42,7 +42,7 @@ class NasaImageGallery extends HTMLElement {
     try {
       const pictures = await getPictureOfTheDay(count);
       pictures.forEach((picture) => {
-        const imagePreview = document.createElement("image-preview");
+        const imagePreview = document.createElement("image-card");
         imagePreview.setAttribute("src", picture.url);
         createSlotContent(imagePreview, "title", "p", picture.title);
         createSlotContent(imagePreview, "description", "p", picture.explanation);
