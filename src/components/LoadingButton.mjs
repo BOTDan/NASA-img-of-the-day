@@ -7,6 +7,7 @@ import { createEl } from "../helper.mjs";
 export class LoadingButton extends HTMLElement {
   #button;
   #loading = false;
+  #disabled = false;
   /** @type {(event: MouseEvent) => void} */
   #onClick = () => {};
 
@@ -55,8 +56,10 @@ export class LoadingButton extends HTMLElement {
       this.#button.ariaDisabled = "true";
     } else {
       this.#button.classList.remove("loading");
-      this.#button.removeAttribute("disabled");
-      this.#button.ariaDisabled = "false";
+      if (!this.disabled) {
+        this.#button.disabled = false;
+        this.#button.ariaDisabled = "false";
+      }
     }
   }
 
@@ -82,12 +85,30 @@ export class LoadingButton extends HTMLElement {
   }
 
   /**
+   * Sets if the button is disabled
+   */
+  set disabled(isDisabled) {
+    this.#disabled = isDisabled;
+    if (isDisabled) {
+      this.#button.disabled = true;
+    } else if (!this.loading) {
+      this.#button.disabled = false;
+    }
+  }
+
+  /**
+   * Is the button disabled?
+   */
+  get disabled() {
+    return this.#disabled;
+  }
+
+  /**
    * Handles when the button is clicked
    * @private
    * @param {MouseEvent} event The mouse eevent
    */
   async handleOnClick(event) {
-    console.log("Handling")
     this.loading = true;
     await this.#onClick(event);
     this.loading = false;
@@ -104,6 +125,9 @@ export class LoadingButton extends HTMLElement {
       case "onclick": {
         this.#onClick = newValue;
       }
+      case "disabled": {
+        this.disabled = newValue;
+      }
     }
   }
 
@@ -111,7 +135,7 @@ export class LoadingButton extends HTMLElement {
    * Returns a list of attributes to watch for changes
    */
   static get observedAttributes() {
-    return ["onclick"];
+    return ["onclick", "disabled"];
   }
 }
 

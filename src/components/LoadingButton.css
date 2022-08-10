@@ -16,10 +16,12 @@
   background: #45a9ec;
 }
 
-.loading-button.loading {
-  cursor: disabled;
+.loading-button.loading,
+.loading-button:disabled {
+  cursor: not-allowed;
   background: #78dcff;
 }
+
 .loading-button.loading::after {
   content: "";
   position: absolute;
@@ -33,6 +35,7 @@
   animation: loading 1s infinite;
   opacity: 1;
 }
+
 @keyframes loading {
   0% {
     left: 0;

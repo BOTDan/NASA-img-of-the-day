@@ -38,6 +38,7 @@ class NasaImageGallery extends HTMLElement {
   }
 
   async loadImages(count=10) {
+    this.#loadMore.setAttribute("disabled", "true");
     try {
       const pictures = await getPictureOfTheDay(count);
       pictures.forEach((picture) => {
@@ -55,6 +56,7 @@ class NasaImageGallery extends HTMLElement {
       // Error loading images
       console.error("There was an error loading images");
     }
+    this.#loadMore.removeAttribute("disabled");
   }
 }
 
