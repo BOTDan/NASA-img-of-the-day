@@ -44,6 +44,7 @@ class NasaImageGallery extends HTMLElement {
       pictures.forEach((picture) => {
         const imagePreview = document.createElement("image-card");
         imagePreview.setAttribute("src", picture.url);
+        imagePreview.setAttribute("alt", picture.title);
         createSlotContent(imagePreview, "title", "p", picture.title);
         createSlotContent(imagePreview, "description", "p", picture.explanation);
         if (picture.copyright) {
