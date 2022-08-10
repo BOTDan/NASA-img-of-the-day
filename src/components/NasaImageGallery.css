@@ -1,4 +1,5 @@
-.nasa-image-gallery {
+.nasa-image-gallery,
+.grid {
   display: grid;
   gap: 1rem;
 }
