@@ -128,6 +128,9 @@ export class LoadingButton extends HTMLElement {
       case "disabled": {
         this.disabled = newValue;
       }
+      case "loading": {
+        this.loading = newValue;
+      }
     }
   }
 
@@ -135,7 +138,7 @@ export class LoadingButton extends HTMLElement {
    * Returns a list of attributes to watch for changes
    */
   static get observedAttributes() {
-    return ["onclick", "disabled"];
+    return ["onclick", "disabled", "loading"];
   }
 }
 
