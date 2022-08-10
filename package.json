@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "An image gallery of NASA's Picture of the Day",
   "scripts": {
-    "start": "http-server"
+    "start": "npx http-server"
   },
   "author": "Dan Wells",
   "license": "ISC"
